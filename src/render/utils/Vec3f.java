@@ -1,4 +1,4 @@
-package render.math;
+package render.utils;
 
 /**
  * Basic class to represent 3-vectors
