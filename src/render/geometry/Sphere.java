@@ -38,4 +38,11 @@ public class Sphere extends Shape {
 
         return -1;
     }
+
+    @Override
+    public Vec3f getNormal(Vec3f intersectionPoint) {
+        Vec3f CI = intersectionPoint.sub(center);
+        CI.normalize();
+        return CI;
+    }
 }

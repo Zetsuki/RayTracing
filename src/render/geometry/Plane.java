@@ -21,4 +21,9 @@ public class Plane extends Shape{
         double t = delta.dotProduct(normal) / dotNV;
         return t > 0 ? t : -1;
     }
+
+    @Override
+    public Vec3f getNormal(Vec3f intersectionPoint) {
+        return normal;
+    }
 }
