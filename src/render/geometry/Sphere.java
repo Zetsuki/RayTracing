@@ -1,12 +1,14 @@
 package render.geometry;
 
+import render.utils.ColorRGB;
 import render.utils.Vec3f;
 
 public class Sphere extends Shape {
     private Vec3f center;
     private double radius;
 
-    public Sphere(Vec3f center, double radius) {
+    public Sphere(ColorRGB color, ColorRGB specular, double shininess, Vec3f center, double radius) {
+        super(color, specular, shininess);
         this.center = center;
         this.radius = radius;
     }

@@ -1,12 +1,14 @@
 package render.geometry;
 
+import render.utils.ColorRGB;
 import render.utils.Vec3f;
 
 public class Plane extends Shape{
     private Vec3f point;
     private Vec3f normal;
 
-    public Plane(Vec3f point, Vec3f normal) {
+    public Plane(ColorRGB color, ColorRGB specular, double shininess, Vec3f point, Vec3f normal) {
+        super(color, specular, shininess);
         this.point = point;
         this.normal = normal;
     }
