@@ -48,38 +48,31 @@ public class Vec3f
 
     /**
      * Set current vector's value to 0.0
-     * @return current vector
+     * @return new vector with value 0
      */
     public Vec3f reset()
     {
-        this.x=this.y=this.z=0.F;
-        return this;
+        return new Vec3f(0.F, 0.F, 0.F);
     }
 
     /**
-     * Copy "that" vector in current vector
+     * Copy "that" vector in current vector and return a new vector
      * @param that vector to be copied
-     * @return current vector
+     * @return new vector with values of "that"
      */
     public Vec3f set(final Vec3f that)
     {
-        this.x=that.x;
-        this.y=that.y;
-        this.z=that.z;
-        return this;
+        return new Vec3f(that.x, that.y, that.z);
     }
 
     /**
-     * Copy x, y and z in current vector
-     * @param x,y,z values to place into current vector
-     * @return current vector
+     * Copy x, y and z in current vector and return a new vector
+     * @param x,y,z values to place into new vector
+     * @return new vector with values (x, y, z)
      */
     public Vec3f set(final double x,final double y,final double z)
     {
-        this.x=x;
-        this.y=y;
-        this.z=z;
-        return this;
+        return new Vec3f(x, y, z);
     }
 
     /**
@@ -98,167 +91,142 @@ public class Vec3f
     }
 
     /**
-     * Normalize current vector
-     * @return current vector
+     * Normalize current vector and return a new normalized vector
+     * @return new normalized vector
      */
     public Vec3f normalize()
     {
         double l=this.lengthSquare();
         if (l==0.F) return this;
         l=(double)Math.sqrt(l);
-        return this.scale(1.F/l);
+        return new Vec3f(this.x / l, this.y / l, this.z / l);
     }
 
     /**
-     * Add a vector to current vector
+     * Add a vector to current vector and return new vector
      * @param that any vector
-     * @return current vector
+     * @return new vector after addition
      */
     public Vec3f add(final Vec3f that)
     {
-        this.x+=that.x;
-        this.y+=that.y;
-        this.z+=that.z;
-        return this;
+        return new Vec3f(this.x + that.x, this.y + that.y, this.z + that.z);
     }
 
     /**
-     * Add two vectors v1 and v2 and put result into current vector
+     * Add two vectors v1 and v2 and return new vector
      * @param v1 any vector
      * @param v2 any vector
-     * @return current vector
+     * @return new vector after addition
      */
     public Vec3f setAdd(final Vec3f v1, final Vec3f v2)
     {
-        this.x=v1.x+v2.x;
-        this.y=v1.y+v2.y;
-        this.z=v1.z+v2.z;
-        return this;
+        return new Vec3f(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z);
     }
 
     /**
-     * Subtract a vector to current vector
+     * Subtract a vector from current vector and return new vector
      * @param that vector to subtract
-     * @return current vector
+     * @return new vector after subtraction
      */
     public Vec3f sub(final Vec3f that)
     {
-        this.x-=that.x;
-        this.y-=that.y;
-        this.z-=that.z;
-        return this;
+        return new Vec3f(this.x - that.x, this.y - that.y, this.z - that.z);
     }
 
     /**
-     * Subtract two vectors and put result into current vector
+     * Subtract two vectors and return new vector
      * @param v1 any vector
      * @param v2 any vector
-     * @return
+     * @return new vector after subtraction
      */
     public Vec3f setSub(final Vec3f v1,final Vec3f v2)
     {
-        this.x=v1.x-v2.x;
-        this.y=v1.y-v2.y;
-        this.z=v1.z-v2.z;
-        return this;
+        return new Vec3f(v1.x - v2.x, v1.y - v2.y, v1.z - v2.z);
     }
 
     /**
-     * Scale current vector uniformly
+     * Scale current vector uniformly and return a new scaled vector
      * @param scale uniform scale factor
-     * @return current vector
+     * @return new scaled vector
      */
     public Vec3f scale(final double scale)
     {
-        this.x*=scale;
-        this.y*=scale;
-        this.z*=scale;
-        return this;
+        return new Vec3f(this.x * scale, this.y * scale, this.z * scale);
     }
 
     /**
-     * Scale current vector with specific factors for each coordinate
+     * Scale current vector with specific factors for each coordinate and return new scaled vector
      * @param scalex scale factor for x
      * @param scaley scale factor for y
      * @param scalez scale factor for z
-     * @return current vector
+     * @return new scaled vector
      */
     public Vec3f scale(final double scalex,final double scaley,final double scalez)
     {
-        this.x*=scalex;
-        this.y*=scaley;
-        this.z*=scalez;
-        return this;
+        return new Vec3f(this.x * scalex, this.y * scaley, this.z * scalez);
     }
 
     /**
-     * Scale a given vector by a uniform scale and put result into current vector
+     * Scale a given vector by a uniform scale and return new scaled vector
      * @param scale scale factor
      * @param that vector to scale
-     * @return current vector
+     * @return new scaled vector
      */
     public Vec3f setScale(final double scale,final Vec3f that)
     {
-        this.x=scale*that.x;
-        this.y=scale*that.y;
-        this.z=scale*that.z;
-        return this;
+        return new Vec3f(scale * that.x, scale * that.y, scale * that.z);
     }
 
     /**
-     * Scale a given vector by factors provided in another vector and put result into current vector
+     * Scale a given vector by factors provided in another vector and return new scaled vector
      * @param v1 vector to scale
-     * @param v2 scale factors for x, y and z
-     * @return current vector
+     * @param v2 scale factors for x, y, and z
+     * @return new scaled vector
      */
     public Vec3f setScale(final Vec3f v1,final Vec3f v2)
     {
-        this.x=v1.x*v2.x;
-        this.y=v1.y*v2.y;
-        this.z=v1.z*v2.z;
-        return this;
+        return new Vec3f(v1.x * v2.x, v1.y * v2.y, v1.z * v2.z);
     }
 
     /**
-     * Add a given vector that is before-hand scaled, to the current vector
+     * Add a given vector that is before-hand scaled, to the current vector and return new vector
      * @param scale scale factor
      * @param that vector to scale and add to current vector
-     * @return current vector
+     * @return new vector after addition
      */
     public Vec3f addScale(final double scale,final Vec3f that)
     {
-        this.x+=scale*that.x;
-        this.y+=scale*that.y;
-        this.z+=scale*that.z;
-        return this;
+        return new Vec3f(this.x + scale * that.x, this.y + scale * that.y, this.z + scale * that.z);
     }
 
     /**
-     * Multiply a given vector by a matrix and put result into current vector
+     * Multiply a given vector by a matrix and return new vector
      * @param mat any matrix
      * @param v any vector
-     * @return current vector
+     * @return new vector after matrix multiplication
      */
     public Vec3f setMatMultiply(final double[] mat,final Vec3f v)
     {
-        this.x=mat[0]*v.x+mat[1]*v.y+mat[2]*v.z;
-        this.y=mat[3]*v.x+mat[4]*v.y+mat[5]*v.z;
-        this.z=mat[6]*v.x+mat[7]*v.y+mat[8]*v.z;
-        return this;
+        return new Vec3f(
+                mat[0] * v.x + mat[1] * v.y + mat[2] * v.z,
+                mat[3] * v.x + mat[4] * v.y + mat[5] * v.z,
+                mat[6] * v.x + mat[7] * v.y + mat[8] * v.z
+        );
     }
 
     /**
-     * Multiply a given vector by the transpose of a matrix and put result into current vector
+     * Multiply a given vector by the transpose of a matrix and return new vector
      * @param mat any matrix
      * @param v any vector
-     * @return current vector
+     * @return new vector after transpose matrix multiplication
      */
     public Vec3f setTransposeMatMultiply(final double[] mat,final Vec3f v)
     {
-        this.x=mat[0]*v.x+mat[3]*v.y+mat[6]*v.z;
-        this.y=mat[1]*v.x+mat[4]*v.y+mat[7]*v.z;
-        this.z=mat[2]*v.x+mat[5]*v.y+mat[8]*v.z;
-        return this;
+        return new Vec3f(
+                mat[0] * v.x + mat[3] * v.y + mat[6] * v.z,
+                mat[1] * v.x + mat[4] * v.y + mat[7] * v.z,
+                mat[2] * v.x + mat[5] * v.y + mat[8] * v.z
+        );
     }
 
     /**
@@ -272,17 +240,17 @@ public class Vec3f
     }
 
     /**
-     * Fill current vector with the cross product of two vectors.
-     * Take care of parameters order, cross-product is anti-commutative!
+     * Return the cross product of two vectors
      * @param v1 First vector
      * @param v2 Second vector
-     * @return current vector, filled with cross product v1*v2
+     * @return new vector with cross product v1 * v2
      */
     public Vec3f setCrossProduct(final Vec3f v1,final Vec3f v2)
     {
-        this.x=v1.y*v2.z-v1.z*v2.y;
-        this.y=v1.z*v2.x-v1.x*v2.z; // take care of this value !!
-        this.z=v1.x*v2.y-v1.y*v2.x;
-        return this;
+        return new Vec3f(
+                v1.y * v2.z - v1.z * v2.y,
+                v1.z * v2.x - v1.x * v2.z,
+                v1.x * v2.y - v1.y * v2.x
+        );
     }
 }
