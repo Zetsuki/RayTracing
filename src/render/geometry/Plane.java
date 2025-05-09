@@ -17,8 +17,7 @@ public class Plane extends Shape{
         if (Math.abs(dotNV) < 1e-6) return -1;
 
         Vec3f delta = new Vec3f(point);
-        delta.sub(P);
-        Vec3f delta = point.sub(P);
+        delta = delta.sub(P);
         double t = delta.dotProduct(normal) / dotNV;
         return t > 0 ? t : -1;
     }
