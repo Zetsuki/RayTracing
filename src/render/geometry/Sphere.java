@@ -18,7 +18,7 @@ public class Sphere extends Shape {
         Vec3f CP = origin.sub(center);
 
         double a = direction.dotProduct(direction);
-        double b = direction.scale(2.0F).dotProduct(CP);
+        double b = 2.0D * direction.dotProduct(CP);
         double c = CP.dotProduct(CP) - radius * radius;
 
         double delta = b * b - 4.0D * a * c;
