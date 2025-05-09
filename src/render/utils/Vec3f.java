@@ -12,7 +12,7 @@ public class Vec3f
      * x, y and z values of the current vector.
      * These are public to allow fast access and simple use.
      */
-    public float x,y,z;
+    public double x,y,z;
 
     /**
      * Default Constructor
@@ -28,7 +28,7 @@ public class Vec3f
      * @param y
      * @param z
      */
-    public Vec3f(final float x,final float y,final float z)
+    public Vec3f(final double x,final double y,final double z)
     {
         this.x=x;
         this.y=y;
@@ -74,7 +74,7 @@ public class Vec3f
      * @param x,y,z values to place into current vector
      * @return current vector
      */
-    public Vec3f set(final float x,final float y,final float z)
+    public Vec3f set(final double x,final double y,final double z)
     {
         this.x=x;
         this.y=y;
@@ -85,16 +85,16 @@ public class Vec3f
     /**
      * @return square of the length of current vector
      */
-    public float lengthSquare()
+    public double lengthSquare()
     {
         return this.x*this.x+this.y*this.y+this.z*this.z;
     }
     /**
      * @return length of current vector
      */
-    public float length()
+    public double length()
     {
-        return (float)Math.sqrt(this.x*this.x+this.y*this.y+this.z*this.z);
+        return (double)Math.sqrt(this.x*this.x+this.y*this.y+this.z*this.z);
     }
 
     /**
@@ -103,9 +103,9 @@ public class Vec3f
      */
     public Vec3f normalize()
     {
-        float l=this.lengthSquare();
+        double l=this.lengthSquare();
         if (l==0.F) return this;
-        l=(float)Math.sqrt(l);
+        l=(double)Math.sqrt(l);
         return this.scale(1.F/l);
     }
 
@@ -168,7 +168,7 @@ public class Vec3f
      * @param scale uniform scale factor
      * @return current vector
      */
-    public Vec3f scale(final float scale)
+    public Vec3f scale(final double scale)
     {
         this.x*=scale;
         this.y*=scale;
@@ -183,7 +183,7 @@ public class Vec3f
      * @param scalez scale factor for z
      * @return current vector
      */
-    public Vec3f scale(final float scalex,final float scaley,final float scalez)
+    public Vec3f scale(final double scalex,final double scaley,final double scalez)
     {
         this.x*=scalex;
         this.y*=scaley;
@@ -197,7 +197,7 @@ public class Vec3f
      * @param that vector to scale
      * @return current vector
      */
-    public Vec3f setScale(final float scale,final Vec3f that)
+    public Vec3f setScale(final double scale,final Vec3f that)
     {
         this.x=scale*that.x;
         this.y=scale*that.y;
@@ -225,7 +225,7 @@ public class Vec3f
      * @param that vector to scale and add to current vector
      * @return current vector
      */
-    public Vec3f addScale(final float scale,final Vec3f that)
+    public Vec3f addScale(final double scale,final Vec3f that)
     {
         this.x+=scale*that.x;
         this.y+=scale*that.y;
@@ -239,7 +239,7 @@ public class Vec3f
      * @param v any vector
      * @return current vector
      */
-    public Vec3f setMatMultiply(final float[] mat,final Vec3f v)
+    public Vec3f setMatMultiply(final double[] mat,final Vec3f v)
     {
         this.x=mat[0]*v.x+mat[1]*v.y+mat[2]*v.z;
         this.y=mat[3]*v.x+mat[4]*v.y+mat[5]*v.z;
@@ -253,7 +253,7 @@ public class Vec3f
      * @param v any vector
      * @return current vector
      */
-    public Vec3f setTransposeMatMultiply(final float[] mat,final Vec3f v)
+    public Vec3f setTransposeMatMultiply(final double[] mat,final Vec3f v)
     {
         this.x=mat[0]*v.x+mat[3]*v.y+mat[6]*v.z;
         this.y=mat[1]*v.x+mat[4]*v.y+mat[7]*v.z;
@@ -266,7 +266,7 @@ public class Vec3f
      * @param v vector with which dotproduct is computed
      * @return result of dot product
      */
-    public float dotProduct(final Vec3f v)
+    public double dotProduct(final Vec3f v)
     {
         return this.x*v.x+this.y*v.y+this.z*v.z;
     }
