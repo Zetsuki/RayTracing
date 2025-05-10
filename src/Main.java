@@ -1,36 +1,45 @@
+import render.scene.BaseScene;
+import render.scene.Scene;
+import render.utils.ColorRGB;
+import render.utils.Vec3f;
+
+import java.io.IOException;
+
 import static render.utils.JavaTGA.saveTGA;
 
 public class Main {
+
+    private static final int DEFAULT_MAX_DEPTH = 5;
+    private static final int DEFAULT_WIDTH = 1024;
+    private static final int DEFAULT_HEIGHT = 768;
+
     /**
      * @param args no command line arguments
      */
-    public static void main(String[] args) {
-        int w=1024;
-        int h=768;
-        byte buffer[]=new byte[3*w*h];
+    public static void main(String[] args) throws IOException {
+        Scene scene = new BaseScene();
+        String name = "output/" + scene.getClass().getSimpleName() + "_" + DEFAULT_MAX_DEPTH + "_" + DEFAULT_WIDTH + "x" + DEFAULT_HEIGHT + ".tga";
 
-        for(int row = 0; row < h; row++){ // for each row of the image
-            for(int col = 0; col < w; col++){ // for each column of the image
+        Vec3f camPosition = scene.getCamPosition();
+        double screenDistance = scene.getScreenDistance();
 
-                int index = 3*((row*w)+col); // compute index of color for pixel (x,y) in the buffer
+        byte[] buffer = new byte[3 * DEFAULT_WIDTH * DEFAULT_HEIGHT];
 
-                // Ensure that the pixel is black
-                buffer[index]=0; // blue : take care, blue is the first component !!!
-                buffer[index+1]=0; // green
-                buffer[index+2]=0; // red (red is the last component !!!)
-
-                // Depending on the x position, select a color...
-                if (col<w/3) buffer[index]=(byte)255; // Blue in the left part of the image
-                else if (col<2*w/3) buffer[index+1]=(byte)255; // Green in the middle
-                else buffer[index+2]=(byte)255; // Red in the right part
+        for (int row = 0; row < DEFAULT_HEIGHT; row++) {
+            for (int col = 0; col < DEFAULT_WIDTH; col++) {
+                int index = 3 * (row * DEFAULT_WIDTH + col);
+                Vec3f direction = new Vec3f(
+                        (2 * ((col + 0.5f) / DEFAULT_WIDTH) - 1) * (float) DEFAULT_WIDTH / DEFAULT_HEIGHT,
+                        1 - 2 * ((row + 0.5f) / DEFAULT_HEIGHT),
+                        (float) -screenDistance);
+                ColorRGB color = scene.findColor(camPosition, direction, DEFAULT_MAX_DEPTH);
+                buffer[index] = (byte) (Math.min(255, color.getB() * 255));
+                buffer[index + 1] = (byte) (Math.min(255, color.getG() * 255));
+                buffer[index + 2] = (byte) (Math.min(255, color.getR() * 255));
             }
         }
-        try {
-            saveTGA("imagetest.tga",buffer,w,h);
-        }
-        catch(Exception e)
-        {
-            System.err.println("TGA file not created :"+e);
-        }
+
+        saveTGA(name, buffer, DEFAULT_WIDTH, DEFAULT_HEIGHT);
+        System.out.println("Image saved as: " + name);
     }
 }

@@ -5,7 +5,7 @@ MAIN_CLASS = Main
 SOURCES = $(shell find $(SRC_DIR) -name "*.java")
 
 # Default
-all: clean build
+all: clean build run
 
 # Compilation
 build:
