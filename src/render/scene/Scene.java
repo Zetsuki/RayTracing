@@ -107,9 +107,12 @@ public abstract class Scene {
         // Reflection
         double reflectionCoefficient = closestIntersectedShape.getKr();
         if (reflectionCoefficient > 0.0D) {
-            Vec3f r = direction.sub(direction.scale(2.0D * normalIntersection.dotProduct(direction)));
-            r.normalize();
-            color = color.add(findColor(intersectionPoint, r, maxRayDepth - 1).multiply(reflectionCoefficient));
+            double dot = normalIntersection.dotProduct(direction);
+            Vec3f r = direction.sub(normalIntersection.scale(2.0D * dot)).normalize();
+
+            Vec3f reflectionOrigin = intersectionPoint.add(r.scale(0.001));
+
+            color = color.add(findColor(reflectionOrigin, r, maxRayDepth - 1).multiply(reflectionCoefficient));
         }
 
         return color;

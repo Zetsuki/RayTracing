@@ -12,7 +12,7 @@ import static render.utils.JavaTGA.saveTGA;
 
 public class Main {
 
-    private static final int DEFAULT_MAX_DEPTH = 5;
+    private static final int DEFAULT_MAX_DEPTH = 10;
     private static final int DEFAULT_WIDTH = 1024;
     private static final int DEFAULT_HEIGHT = 768;
 
