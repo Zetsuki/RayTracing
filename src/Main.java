@@ -1,4 +1,5 @@
 import render.scene.BaseScene;
+import render.scene.BaseSceneWithReflection;
 import render.scene.BaseSceneWithTextures;
 import render.scene.Scene;
 import render.utils.ColorRGB;
@@ -22,9 +23,11 @@ public class Main {
         ArrayList<Scene> scenes = new ArrayList<>();
         Scene scene1 = new BaseScene();
         Scene scene2 = new BaseSceneWithTextures();
+        Scene scene3 = new BaseSceneWithReflection();
 
         scenes.add(scene1);
         scenes.add(scene2);
+        scenes.add(scene3);
 
         for(Scene scene : scenes) {
             String name = getFileName(scene);

@@ -20,6 +20,12 @@ public class Sphere extends Shape {
         this.radius = radius;
     }
 
+    public Sphere(ColorRGB color, ColorRGB specular, double shininess, Vec3f center, double radius, Texture2D texture, double kr, double kt, double eta) {
+        super(color, specular, shininess, texture, kr, kt, eta);
+        this.center = center;
+        this.radius = radius;
+    }
+
     @Override
     public double getIntersection(Vec3f origin, Vec3f direction) {
         Vec3f CP = origin.sub(center);

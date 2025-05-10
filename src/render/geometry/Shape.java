@@ -10,6 +10,10 @@ public abstract class Shape {
 
     protected Texture2D texture;
 
+    private double kr = 0;
+    private double kt = 0;
+    private double eta = 1;
+
     protected Shape(ColorRGB color, ColorRGB specular, double shininess) {
         this.color = color;
         this.specular = specular;
@@ -21,6 +25,16 @@ public abstract class Shape {
         this.specular = specular;
         this.shininess = shininess;
         this.texture = texture;
+    }
+
+    protected Shape(ColorRGB color, ColorRGB specular, double shininess, Texture2D texture, double kr, double kt, double eta) {
+        this.color = color;
+        this.specular = specular;
+        this.shininess = shininess;
+        this.texture = texture;
+        this.kr = kr;
+        this.kt = kt;
+        this.eta = eta;
     }
 
     public abstract double getIntersection(Vec3f P, Vec3f v);
@@ -47,5 +61,17 @@ public abstract class Shape {
 
     public Texture2D getTexture() {
         return texture;
+    }
+
+    public double getKr() {
+        return kr;
+    }
+
+    public double getKt() {
+        return kt;
+    }
+
+    public double getEta() {
+        return eta;
     }
 }

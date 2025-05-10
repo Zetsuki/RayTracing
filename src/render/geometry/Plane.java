@@ -20,6 +20,12 @@ public class Plane extends Shape{
         this.distance = distance;
     }
 
+    public Plane(ColorRGB color, ColorRGB specular, double shininess, Vec3f normal, double distance, Texture2D texture, double kr, double kt, double eta) {
+        super(color, specular, shininess, texture, kr, kt, eta);
+        this.normal = normal.normalize();
+        this.distance = distance;
+    }
+
     @Override
     public double getIntersection(Vec3f origin, Vec3f direction) {
         double dotProductNormalDirection = normal.dotProduct(direction);
