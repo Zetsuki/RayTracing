@@ -22,7 +22,7 @@ public class Plane extends Shape{
         }
 
         double dotProductNormalOrigin = normal.dotProduct(origin);
-        double lambdaI = (-dotProductNormalOrigin - distance) / dotProductNormalDirection;
+        double lambdaI = (distance - dotProductNormalOrigin) / dotProductNormalDirection;
 
         return lambdaI > 0.0001D ? lambdaI : -1.0D;
     }
