@@ -12,9 +12,9 @@ public abstract class Scene {
     protected final ArrayList<Shape> shapes;
     protected final ArrayList<Ray3D> lights;
 
-    protected Scene(ArrayList<Shape> shapes, ArrayList<Ray3D> lights) {
-        this.shapes = shapes;
-        this.lights = lights;
+    protected Scene() {
+        this.shapes = new ArrayList<>();
+        this.lights = new ArrayList<>();
     }
 
     public ColorRGB findColor(Vec3f origin, Vec3f direction, int maxRayDepth) {
