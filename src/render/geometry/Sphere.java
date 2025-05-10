@@ -4,8 +4,8 @@ import render.utils.ColorRGB;
 import render.utils.Vec3f;
 
 public class Sphere extends Shape {
-    private Vec3f center;
-    private double radius;
+    private final Vec3f center;
+    private final double radius;
 
     public Sphere(ColorRGB color, ColorRGB specular, double shininess, Vec3f center, double radius) {
         super(color, specular, shininess);

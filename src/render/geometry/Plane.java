@@ -4,8 +4,8 @@ import render.utils.ColorRGB;
 import render.utils.Vec3f;
 
 public class Plane extends Shape{
-    private Vec3f normal;
-    private double distance;
+    private final Vec3f normal;
+    private final double distance;
 
     public Plane(ColorRGB color, ColorRGB specular, double shininess, Vec3f normal, double distance) {
         super(color, specular, shininess);
