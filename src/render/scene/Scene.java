@@ -12,6 +12,9 @@ public abstract class Scene {
     protected final ArrayList<Shape> shapes;
     protected final ArrayList<Ray3D> lights;
 
+    protected Vec3f camPosition = new Vec3f();
+    protected double screenDistance = 1D;
+
     protected Scene() {
         this.shapes = new ArrayList<>();
         this.lights = new ArrayList<>();
@@ -97,5 +100,13 @@ public abstract class Scene {
         }
 
         return color;
+    }
+
+    public Vec3f getCamPosition() {
+        return camPosition;
+    }
+
+    public double getScreenDistance() {
+        return screenDistance;
     }
 }
