@@ -5,6 +5,7 @@ import render.utils.ColorRGB;
 import render.utils.Vec3f;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import static render.utils.JavaTGA.saveTGA;
 
@@ -18,9 +19,21 @@ public class Main {
      * @param args no command line arguments
      */
     public static void main(String[] args) throws IOException {
-        Scene scene = new BaseSceneWithTextures();
-        String name = "output/" + scene.getClass().getSimpleName() + "_" + DEFAULT_MAX_DEPTH + "_" + DEFAULT_WIDTH + "x" + DEFAULT_HEIGHT + ".tga";
+        ArrayList<Scene> scenes = new ArrayList<>();
+        Scene scene1 = new BaseScene();
+        Scene scene2 = new BaseSceneWithTextures();
 
+        scenes.add(scene1);
+        scenes.add(scene2);
+
+        for(Scene scene : scenes) {
+            String name = getFileName(scene);
+            saveTGA(name, getBuffer(scene), DEFAULT_WIDTH, DEFAULT_HEIGHT);
+            System.out.println("Image saved as: " + name);
+        }
+    }
+
+    private static byte[] getBuffer(Scene scene) {
         Vec3f camPosition = scene.getCamPosition();
         double screenDistance = scene.getScreenDistance();
 
@@ -48,8 +61,10 @@ public class Main {
                 buffer[index + 2] = (byte) (Math.min(255, color.getR() * 255));
             }
         }
+        return buffer;
+    }
 
-        saveTGA(name, buffer, DEFAULT_WIDTH, DEFAULT_HEIGHT);
-        System.out.println("Image saved as: " + name);
+    private static String getFileName(Scene scene) {
+        return "output/" + scene.getClass().getSimpleName() + "_" + DEFAULT_MAX_DEPTH + "_" + DEFAULT_WIDTH + "x" + DEFAULT_HEIGHT + ".tga";
     }
 }
