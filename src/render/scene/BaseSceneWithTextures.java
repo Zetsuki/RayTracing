@@ -13,9 +13,9 @@ public class BaseSceneWithTextures extends Scene {
 
     public BaseSceneWithTextures() {
         super();
-        Shape p1 = new Plane(ColorRGB.red, ColorRGB.lightGray, 10D, new Vec3f(0D, 0D, -1D), 6D, new Texture2D("res/textures/tiles2.jpg"));
-        Shape p2 = new Plane(ColorRGB.green, ColorRGB.lightGray, 5D, new Vec3f(1D, 0D, 0D), 3D, new Texture2D("res/textures/tiles2.jpg"));
-        Shape p3 = new Plane(ColorRGB.blue, ColorRGB.lightGray, 20D, new Vec3f(-1D, 0D, 0D), 3D, new Texture2D("res/textures/tiles2.jpg"));
+        Shape p1 = new Plane(ColorRGB.red, ColorRGB.lightGray, 10D, new Vec3f(0D, 0D, -1D), 6D, new Texture2D("res/textures/glass.jpg"));
+        Shape p2 = new Plane(ColorRGB.green, ColorRGB.lightGray, 5D, new Vec3f(1D, 0D, 0D), 3D, new Texture2D("res/textures/glass.jpg"));
+        Shape p3 = new Plane(ColorRGB.blue, ColorRGB.lightGray, 20D, new Vec3f(-1D, 0D, 0D), 3D, new Texture2D("res/textures/glass.jpg"));
         Shape p4 = new Plane(ColorRGB.orange, ColorRGB.lightGray, 20D, new Vec3f(0D, 1D, 0D), 1.5D, new Texture2D("res/textures/tiles1.jpg"));
         Shape p5 = new Plane(ColorRGB.yellow, ColorRGB.lightGray, 20D, new Vec3f(0D, -1D, 0D), 1.5D, new Texture2D("res/textures/ceiling.jpg"));
 
