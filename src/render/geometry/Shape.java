@@ -44,4 +44,8 @@ public abstract class Shape {
     public double getShininess() {
         return shininess;
     }
+
+    public Texture2D getTexture() {
+        return texture;
+    }
 }

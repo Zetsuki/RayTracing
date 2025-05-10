@@ -91,11 +91,16 @@ public abstract class Scene {
                 ColorRGB specular = light.getSpec().multiply(closestIntersectedShape.getSpecular())
                         .multiply(Math.pow(dotProductReflectionRay, closestIntersectedShape.getShininess()));
 
-                // Diffuse light intensity
-                ColorRGB diffuse = light.getDiff().multiply(closestIntersectedShape.getColor()).multiply(dotProductNormalLight);
-
-                // Combine diffuse and specular components to the final color
-                color = color.add(diffuse).add(specular);
+                // Object has a texture set
+                if(closestIntersectedShape.getTexture() != null) {
+                    // Get texture color instaed
+                    color = closestIntersectedShape.getTextureColor(intersectionPoint);
+                    color.add(specular);
+                } else {
+                    // Diffuse light intensity
+                    ColorRGB diffuse = light.getDiff().multiply(closestIntersectedShape.getColor()).multiply(dotProductNormalLight);
+                    color = color.add(diffuse).add(specular);
+                }
             }
         }
 

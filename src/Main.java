@@ -1,4 +1,5 @@
 import render.scene.BaseScene;
+import render.scene.BaseSceneWithTextures;
 import render.scene.Scene;
 import render.utils.ColorRGB;
 import render.utils.Vec3f;
@@ -17,7 +18,7 @@ public class Main {
      * @param args no command line arguments
      */
     public static void main(String[] args) throws IOException {
-        Scene scene = new BaseScene();
+        Scene scene = new BaseSceneWithTextures();
         String name = "output/" + scene.getClass().getSimpleName() + "_" + DEFAULT_MAX_DEPTH + "_" + DEFAULT_WIDTH + "x" + DEFAULT_HEIGHT + ".tga";
 
         Vec3f camPosition = scene.getCamPosition();

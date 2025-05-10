@@ -39,18 +39,30 @@ public class Plane extends Shape{
 
     @Override
     public ColorRGB getTextureColor(Vec3f intersectionPoint) {
-        // Projection of the intersection on the plane
+        Vec3f[] axes = generateLocalAxes(normal); // Consistent local axes
+        Vec3f uAxis = axes[0];
+        Vec3f vAxis = axes[1];
+
+        // Project the intersection point onto the plane's local coordinate system
         Vec3f pointOnPlane = intersectionPoint.sub(normal.scale(normal.dotProduct(intersectionPoint) + distance));
+        double u = pointOnPlane.dotProduct(uAxis);
+        double v = pointOnPlane.dotProduct(vAxis);
 
-        // get u and v
-        double u = pointOnPlane.x;
-        double v = pointOnPlane.y;
+        // Normalize the UV coordinates
+        double uNormalized = u - Math.floor(u);
+        double vNormalized = v - Math.floor(v);
 
-        // Clamping into [0,1]
-        u -= Math.floor(u);
-        v -= Math.floor(v);
+        // Get the color from the texture using the normalized UV coordinates
+        return texture.getColor(uNormalized, vNormalized);
+    }
 
-        return texture.getColor(u,v);
+    private Vec3f[] generateLocalAxes(Vec3f normal) {
+        Vec3f reference = (Math.abs(normal.y) < 0.9) ? new Vec3f(0, 1, 0) : new Vec3f(1, 0, 0);
+
+        Vec3f uAxis = normal.crossProduct(reference).normalize();
+        Vec3f vAxis = normal.crossProduct(uAxis).normalize();
+
+        return new Vec3f[] { uAxis, vAxis };
     }
 
     @Override

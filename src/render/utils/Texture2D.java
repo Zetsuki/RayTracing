@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 public class Texture2D {
     private final BufferedImage img;
@@ -12,9 +13,15 @@ public class Texture2D {
     public Texture2D(String filePath) {
         BufferedImage loadedImg = null;
         try {
-            loadedImg = ImageIO.read(new File(filePath));
-            if(loadedImg == null) {
-                throw new IOException("Image could not be read from file.");
+            InputStream resourceStream = getClass().getResourceAsStream(filePath);
+            if (resourceStream != null) {
+                loadedImg = ImageIO.read(resourceStream);
+            } else {
+                loadedImg = ImageIO.read(new File(filePath));
+            }
+
+            if (loadedImg == null) {
+                throw new IOException("Image could not be read from " + filePath);
             }
         } catch (IOException e) {
             System.err.println("Error loading texture from file: " + filePath);

@@ -253,4 +253,18 @@ public class Vec3f
                 v1.x * v2.y - v1.y * v2.x
         );
     }
+
+    /**
+     * Return the cross product of this vector with another.
+     * @param other The other vector
+     * @return A new vector that is the cross product of this and v2
+     */
+    public Vec3f crossProduct(final Vec3f other)
+    {
+        return new Vec3f(
+                this.y * other.z - this.z * other.y,
+                this.z * other.x - this.x * other.z,
+                this.x * other.y - this.y * other.x
+        );
+    }
 }
