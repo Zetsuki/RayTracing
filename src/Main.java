@@ -23,16 +23,25 @@ public class Main {
         Vec3f camPosition = scene.getCamPosition();
         double screenDistance = scene.getScreenDistance();
 
+        // Buffer holding pixel color data
         byte[] buffer = new byte[3 * DEFAULT_WIDTH * DEFAULT_HEIGHT];
 
+        // Loopign through each pixel in the image
         for (int row = 0; row < DEFAULT_HEIGHT; row++) {
             for (int col = 0; col < DEFAULT_WIDTH; col++) {
+
                 int index = 3 * (row * DEFAULT_WIDTH + col);
+
+                // Compute the camera direction vector for the current pixel
                 Vec3f direction = new Vec3f(
                         (2 * ((col + 0.5f) / DEFAULT_WIDTH) - 1) * (float) DEFAULT_WIDTH / DEFAULT_HEIGHT,
                         1 - 2 * ((row + 0.5f) / DEFAULT_HEIGHT),
                         (float) -screenDistance);
+
+                // Getting the color for the current pixel
                 ColorRGB color = scene.findColor(camPosition, direction, DEFAULT_MAX_DEPTH);
+
+                // Storing the color in the buffer (clamping values [0, 255])
                 buffer[index] = (byte) (Math.min(255, color.getB() * 255));
                 buffer[index + 1] = (byte) (Math.min(255, color.getG() * 255));
                 buffer[index + 2] = (byte) (Math.min(255, color.getR() * 255));

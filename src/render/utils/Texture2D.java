@@ -25,7 +25,7 @@ public class Texture2D {
         this.img = loadedImg;
     }
 
-    public Color getColor(double u, double v) {
+    public ColorRGB getColor(double u, double v) {
         // Clamping U and V into [0,1]
         u = Math.max(0, Math.min(1, u));
         v = Math.max(0, Math.min(1, v));
@@ -46,6 +46,6 @@ public class Texture2D {
         float green = color.getGreen() / 255.0f;
         float blue = color.getBlue() / 255.0f;
 
-        return new Color(red, green, blue);
+        return new ColorRGB(red, green, blue);
     }
 }

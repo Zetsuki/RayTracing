@@ -1,5 +1,8 @@
 package render.utils;
 
+/** Made this class because Java class Color does not have
+ * many operations on the colors (e.g. multiplication, addition)
+ */
 public class ColorRGB {
     private final float r,g,b;
 
