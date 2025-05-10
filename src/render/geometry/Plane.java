@@ -14,13 +14,19 @@ public class Plane extends Shape{
     }
 
     @Override
-    public double getIntersection(Vec3f P, Vec3f v) {
-        double dotNV = normal.dotProduct(v);
-        if (Math.abs(dotNV) < 1e-6) return -1;
+    public double getIntersection(Vec3f origin, Vec3f direction) {
+        double dotProductNormalDirection = normal.dotProduct(direction);
 
-        double t = (distance - normal.dotProduct(P)) / dotNV;
-        return t > 0 ? t : -1;
+        if (Math.abs(dotProductNormalDirection) < 1e-6) {
+            return -1.0D;
+        }
+
+        double dotProductNormalOrigin = normal.dotProduct(origin);
+        double lambdaI = (-dotProductNormalOrigin - distance) / dotProductNormalDirection;
+
+        return lambdaI > 0.0001D ? lambdaI : -1.0D;
     }
+
 
     @Override
     public Vec3f getNormal(Vec3f intersectionPoint) {
