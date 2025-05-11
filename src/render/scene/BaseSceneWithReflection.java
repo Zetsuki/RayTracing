@@ -16,7 +16,7 @@ public class BaseSceneWithReflection extends Scene {
         Shape p1 = new Plane(ColorRGB.orange, ColorRGB.lightGray, 20D, new Vec3f(0D, 0D, -1D), 6D);
         Shape p2 = new Plane(ColorRGB.green, ColorRGB.lightGray, 5D, new Vec3f(1D, 0D, 0D), 3D);
         Shape p3 = new Plane(ColorRGB.blue, ColorRGB.lightGray, 20D, new Vec3f(-1D, 0D, 0D), 3D);
-        Shape p4 = new Plane(ColorRGB.orange, ColorRGB.lightGray, 300D, new Vec3f(0D, 1D, 0D), 1.5D, new Texture2D("res/textures/tiles1.jpg"), 0.6D, 0D, 1D);
+        Shape p4 = new Plane(ColorRGB.orange, ColorRGB.lightGray, 1000D, new Vec3f(0D, 1D, 0D), 1.5D, new Texture2D("res/textures/tiles1.jpg"), 0.6D, 0D, 1D);
         Shape p5 = new Plane(ColorRGB.yellow, ColorRGB.lightGray, 20D, new Vec3f(0D, -1D, 0D), 1.5D);
 
         Shape s1 = new Sphere(ColorRGB.purple, ColorRGB.lightGray, 15D, new Vec3f(2D, 0.5D, -4D), 0.7D);

@@ -1,7 +1,4 @@
-import render.scene.BaseScene;
-import render.scene.BaseSceneWithReflection;
-import render.scene.BaseSceneWithTextures;
-import render.scene.Scene;
+import render.scene.*;
 import render.utils.ColorRGB;
 import render.utils.Vec3f;
 
@@ -24,10 +21,12 @@ public class Main {
         Scene scene1 = new BaseScene();
         Scene scene2 = new BaseSceneWithTextures();
         Scene scene3 = new BaseSceneWithReflection();
+        Scene scene4 = new BaseSceneWithRefraction();
 
         scenes.add(scene1);
         scenes.add(scene2);
         scenes.add(scene3);
+        scenes.add(scene4);
 
         for(Scene scene : scenes) {
             String name = getFileName(scene);

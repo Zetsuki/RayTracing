@@ -107,12 +107,34 @@ public abstract class Scene {
         // Reflection
         double reflectionCoefficient = closestIntersectedShape.getKr();
         if (reflectionCoefficient > 0.0D) {
+            // Compute the reflection direction using the reflection formula: R = D - 2 * (D ⋅ N) * N
             double dot = normalIntersection.dotProduct(direction);
-            Vec3f r = direction.sub(normalIntersection.scale(2.0D * dot)).normalize();
+            Vec3f reflectionDir = direction.sub(normalIntersection.scale(2.0D * dot)).normalize();
 
-            Vec3f reflectionOrigin = intersectionPoint.add(r.scale(0.001));
+            // Offest the reflection origin to avoid self intersection
+            Vec3f reflectionOrigin = intersectionPoint.add(reflectionDir.scale(0.001));
 
-            color = color.add(findColor(reflectionOrigin, r, maxRayDepth - 1).multiply(reflectionCoefficient));
+            // Add reflected color
+            color = color.add(findColor(reflectionOrigin, reflectionDir, maxRayDepth - 1).multiply(reflectionCoefficient));
+        }
+
+        // Refraction
+        double transmissionCoefficient = closestIntersectedShape.getKt();
+        if (transmissionCoefficient > 0.0D) {
+            double refractionIndex = closestIntersectedShape.getEta();
+            double eta = isInside ? refractionIndex : 1.0D / refractionIndex;
+
+            // Snell-Descartes law
+            double c1 = -normalIntersection.dotProduct(direction);
+            double c2 = Math.sqrt(1.0D - eta * eta * (1.0D - c1 * c1));
+
+            Vec3f refractionDir  = direction.scale(eta).add(normalIntersection.scale(eta * c1 - c2)).normalize();
+
+            // Offest the reflection origin to avoid self intersection
+            Vec3f refractionOrigin = intersectionPoint.add(refractionDir.scale(0.001));
+
+            // Add the refracted color
+            color = color.add(findColor(refractionOrigin, refractionDir, maxRayDepth - 1).multiply(transmissionCoefficient));
         }
 
         return color;

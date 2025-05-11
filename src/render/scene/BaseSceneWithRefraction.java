@@ -19,9 +19,9 @@ public class BaseSceneWithRefraction extends Scene {
         Shape p4 = new Plane(ColorRGB.orange, ColorRGB.lightGray, 20D, new Vec3f(0D, 1D, 0D), 1.5D, new Texture2D("res/textures/tiles1.jpg"));
         Shape p5 = new Plane(ColorRGB.yellow, ColorRGB.lightGray, 20D, new Vec3f(0D, -1D, 0D), 1.5D, new Texture2D("res/textures/ceiling.jpg"));
 
-        Shape s1 = new Sphere(ColorRGB.purple, ColorRGB.lightGray, 15D, new Vec3f(2D, 0.5D, -4D), 0.7D);
-        Shape s2 = new Sphere(ColorRGB.cyan, ColorRGB.lightGray, 15D, new Vec3f(0D, -0.8D, -3.5D), 0.7D);
-        Shape s3 = new Sphere(ColorRGB.gray , ColorRGB.lightGray, 15D, new Vec3f(0D, 0.4D, -2.5D), 0.8D, null,0D, 15D, 0.67D);
+        Shape s1 = new Sphere(ColorRGB.purple, ColorRGB.lightGray, 15D, new Vec3f(2D, 0.5D, -4D), 0.7D, null, 0D, 0.8D, 1.5D);
+        Shape s2 = new Sphere(ColorRGB.red, ColorRGB.lightGray, 15D, new Vec3f(0D, -0.8D, -3.5D), 0.7D);
+        Shape s3 = new Sphere(ColorRGB.gray , ColorRGB.lightGray, 15D, new Vec3f(0D, 0.4D, -2.5D), 0.8D, null,0D, 0.4D, 1.5D);
 
         shapes.add(p1);
         shapes.add(p2);
