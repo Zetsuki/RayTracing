@@ -19,15 +19,12 @@ public class Main {
     public static void main(String[] args) throws IOException {
         ArrayList<Scene> scenes = new ArrayList<>();
         Scene scene1 = new BaseScene();
-        Scene scene2 = new BaseSceneWithTextures();
-        Scene scene3 = new BaseSceneWithReflection();
-        Scene scene4 = new BaseSceneWithRefraction();
+        Scene scene2 = new ReflectionScene();
+        Scene scene3 = new RefractionScene();
 
         scenes.add(scene1);
         scenes.add(scene2);
         scenes.add(scene3);
-        scenes.add(scene4);
-
         for(Scene scene : scenes) {
             String name = getFileName(scene);
             saveTGA(name, getBuffer(scene), DEFAULT_WIDTH, DEFAULT_HEIGHT);

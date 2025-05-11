@@ -107,7 +107,7 @@ public abstract class Scene {
         // Reflection
         double reflectionCoefficient = closestIntersectedShape.getKr();
         if (reflectionCoefficient > 0.0D) {
-            // Compute the reflection direction using the reflection formula: R = D - 2 * (D ⋅ N) * N
+            // Compute the reflection direction
             double dot = normalIntersection.dotProduct(direction);
             Vec3f reflectionDir = direction.sub(normalIntersection.scale(2.0D * dot)).normalize();
 
