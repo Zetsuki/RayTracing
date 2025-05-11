@@ -63,9 +63,12 @@ public class Plane extends Shape{
     }
 
     private Vec3f[] generateLocalAxes(Vec3f normal) {
+        // Select a reference vector that is not parallel to the normal
         Vec3f reference = (Math.abs(normal.y) < 0.9) ? new Vec3f(0, 1, 0) : new Vec3f(1, 0, 0);
 
+        // Compute the first local axis orthogonal to the normal
         Vec3f uAxis = normal.crossProduct(reference).normalize();
+        // Second local axis orhoigonaal to normal and uAxis
         Vec3f vAxis = normal.crossProduct(uAxis).normalize();
 
         return new Vec3f[] { uAxis, vAxis };

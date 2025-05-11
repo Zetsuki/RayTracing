@@ -1,4 +1,5 @@
 OUT_DIR = out
+GENERATED_IMAGE = output
 SRC_DIR = src
 RES_DIR = res
 MAIN_CLASS = Main
@@ -21,6 +22,7 @@ copy-res:
 
 # Execution
 run:
+	@mkdir -p $(GENERATED_IMAGE)
 	@java -cp $(OUT_DIR) $(MAIN_CLASS)
 
 # Cleaning

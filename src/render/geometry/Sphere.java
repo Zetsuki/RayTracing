@@ -4,6 +4,8 @@ import render.utils.ColorRGB;
 import render.utils.Texture2D;
 import render.utils.Vec3f;
 
+import java.awt.*;
+
 public class Sphere extends Shape {
     private final Vec3f center;
     private final double radius;
@@ -61,7 +63,18 @@ public class Sphere extends Shape {
 
     @Override
     public ColorRGB getTextureColor(Vec3f intersectionPoint) {
-        return ColorRGB.black;
+        // Convert the intersection point to local coordinates
+        Vec3f localPoint = intersectionPoint.sub(center).normalize();
+
+        // SPherical coordiantes
+        double theta = Math.acos(localPoint.y);
+        double phi = Math.atan2(localPoint.z, localPoint.x);
+
+        // Mapping coordinates to 2D texture coordinates
+        double u = (phi + Math.PI) / (2 * Math.PI);
+        double v = theta / Math.PI;
+
+        return texture.getColor(u, v);
     }
 
     @Override

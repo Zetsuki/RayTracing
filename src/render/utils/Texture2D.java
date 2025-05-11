@@ -48,7 +48,6 @@ public class Texture2D {
         // Get color from coords
         Color color = new Color(img.getRGB(x, y));
 
-        // Convert to our
         float red = color.getRed() / 255.0f;
         float green = color.getGreen() / 255.0f;
         float blue = color.getBlue() / 255.0f;
